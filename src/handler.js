@@ -22,19 +22,21 @@ const addNoteHandler = (req, h) => {
   const isSuccess = notes.filter((note) => note.id === id).length > 0;
 
   if (isSuccess) {
-    return h.response({
-      status: 'success',
-      message: 'data berhasil ditambah',
-      data: {
-        noteId : id
-      }
-    })
+    return h.header('Content-Type', 'application/json')
+      .response({
+        status: 'success',
+        message: 'data berhasil ditambah',
+        data: {
+          noteId : id
+        }
+      })
       .code(201);
   } else {
-    return h.response({
-      status: 'fail',
-      message: 'data gagal ditambah'
-    })
+    return h.header('Content-Type', 'application/json')
+      .response({
+        status: 'fail',
+        message: 'data gagal ditambah'
+      })
       .code(500);
   }
 };
@@ -60,10 +62,11 @@ const getNodeByIdHandler = (req, h) => {
     };
   }
 
-  return h.response({
-    status: 'fail',
-    message: 'Catatan tidak ditemukan'
-  })
+  return h.header('Content-Type', 'application/json')
+    .response({
+      status: 'fail',
+      message: 'Catatan tidak ditemukan'
+    })
     .code(404);
 };
 
@@ -84,17 +87,19 @@ const editNoteByIdHandler = (req, h) => {
       updatedAt
     };
 
-    return h.response({
-      status: 'success',
-      message: 'Catatn berhasil diupdate'
-    })
+    return h.header('Content-Type', 'application/json')
+      .response({
+        status: 'success',
+        message: 'Catatn berhasil diupdate'
+      })
       .code(200);
   }
 
-  return h.response({
-    status: 'fail',
-    message: 'Gagal diperbarui, id tidak ditemukan'
-  })
+  return h.header('Content-Type', 'application/json')
+    .response({
+      status: 'fail',
+      message: 'Gagal diperbarui, id tidak ditemukan'
+    })
     .code(404);
 };
 
@@ -106,17 +111,19 @@ const deleteNoteById = (req, h) => {
   if (index !== -1) {
     notes.splice(index, 1);
 
-    return h.response({
-      status: 'success',
-      messaage: 'data berhasil dihapus'
-    })
+    return h.header('Content-Type', 'application/json')
+      .response({
+        status: 'success',
+        messaage: 'data berhasil dihapus'
+      })
       .code(200);
   }
 
-  return h.response({
-    status: 'fail',
-    message: 'data gagal dihapus, id tidak ditemukan'
-  })
+  return h.header('Content-Type', 'application/json')
+    .response({
+      status: 'fail',
+      message: 'data gagal dihapus, id tidak ditemukan'
+    })
     .code(404);
 };
 
