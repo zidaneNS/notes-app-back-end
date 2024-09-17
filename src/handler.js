@@ -60,7 +60,7 @@ const getNodeByIdHandler = (req, h) => {
     };
   }
 
-  h.response({
+  return h.response({
     status: 'fail',
     message: 'Catatan tidak ditemukan'
   })
@@ -84,14 +84,14 @@ const editNoteByIdHandler = (req, h) => {
       updatedAt
     };
 
-    h.response({
+    return h.response({
       status: 'success',
       message: 'Catatn berhasil diupdate'
     })
       .code(200);
   }
 
-  h.response({
+  return h.response({
     status: 'fail',
     message: 'Gagal diperbarui, id tidak ditemukan'
   })
@@ -106,14 +106,14 @@ const deleteNoteById = (req, h) => {
   if (index !== -1) {
     notes.splice(index, 1);
 
-    h.response({
+    return h.response({
       status: 'success',
       messaage: 'data berhasil dihapus'
     })
       .code(200);
   }
 
-  h.response({
+  return h.response({
     status: 'fail',
     message: 'data gagal dihapus, id tidak ditemukan'
   })
