@@ -14,7 +14,7 @@ const addNoteHandler = (req, h) => {
     id,
     body,
     createdAt,
-    updatedAt
+    updatedAt,
   };
 
   notes.push(newNote);
@@ -22,20 +22,20 @@ const addNoteHandler = (req, h) => {
   const isSuccess = notes.filter((note) => note.id === id).length > 0;
 
   if (isSuccess) {
-    return h.header('Content-Type', 'application/json')
+    return h
       .response({
         status: 'success',
         message: 'data berhasil ditambah',
         data: {
-          noteId : id
-        }
+          noteId: id,
+        },
       })
       .code(201);
   } else {
-    return h.header('Content-Type', 'application/json')
+    return h
       .response({
         status: 'fail',
-        message: 'data gagal ditambah'
+        message: 'data gagal ditambah',
       })
       .code(500);
   }
@@ -45,7 +45,7 @@ const getAllNotesHandler = () => ({
   status: 'success',
   data: {
     notes,
-  }
+  },
 });
 
 const getNodeByIdHandler = (req, h) => {
@@ -57,15 +57,15 @@ const getNodeByIdHandler = (req, h) => {
     return {
       status: 'success',
       data: {
-        note
-      }
+        note,
+      },
     };
   }
 
-  return h.header('Content-Type', 'application/json')
+  return h
     .response({
       status: 'fail',
-      message: 'Catatan tidak ditemukan'
+      message: 'Catatan tidak ditemukan',
     })
     .code(404);
 };
@@ -84,21 +84,21 @@ const editNoteByIdHandler = (req, h) => {
       title,
       tags,
       body,
-      updatedAt
+      updatedAt,
     };
 
-    return h.header('Content-Type', 'application/json')
+    return h
       .response({
         status: 'success',
-        message: 'Catatn berhasil diupdate'
+        message: 'Catatn berhasil diupdate',
       })
       .code(200);
   }
 
-  return h.header('Content-Type', 'application/json')
+  return h
     .response({
       status: 'fail',
-      message: 'Gagal diperbarui, id tidak ditemukan'
+      message: 'Gagal diperbarui, id tidak ditemukan',
     })
     .code(404);
 };
@@ -111,20 +111,25 @@ const deleteNoteById = (req, h) => {
   if (index !== -1) {
     notes.splice(index, 1);
 
-    return h.header('Content-Type', 'application/json')
-      .response({
-        status: 'success',
-        messaage: 'data berhasil dihapus'
-      })
+    return h.response({
+      status: 'success',
+      messaage: 'data berhasil dihapus',
+    })
       .code(200);
   }
 
-  return h.header('Content-Type', 'application/json')
+  return h
     .response({
       status: 'fail',
-      message: 'data gagal dihapus, id tidak ditemukan'
+      message: 'data gagal dihapus, id tidak ditemukan',
     })
     .code(404);
 };
 
-module.exports = { addNoteHandler, getAllNotesHandler, getNodeByIdHandler, editNoteByIdHandler, deleteNoteById };
+module.exports = {
+  addNoteHandler,
+  getAllNotesHandler,
+  getNodeByIdHandler,
+  editNoteByIdHandler,
+  deleteNoteById,
+};
