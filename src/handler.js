@@ -54,12 +54,12 @@ const getNodeByIdHandler = (req, h) => {
   const note = notes.filter((n) => n.id === id)[0];
 
   if (note !== undefined) {
-    return {
+    return ({
       status: 'success',
       data: {
         note,
       },
-    };
+    });
   }
 
   return h
@@ -90,7 +90,7 @@ const editNoteByIdHandler = (req, h) => {
     return h
       .response({
         status: 'success',
-        message: 'Catatn berhasil diupdate',
+        message: 'Catatan berhasil diupdate',
       })
       .code(200);
   }
@@ -113,7 +113,7 @@ const deleteNoteById = (req, h) => {
 
     return h.response({
       status: 'success',
-      messaage: 'data berhasil dihapus',
+      message: 'data berhasil dihapus',
     })
       .code(200);
   }
@@ -121,7 +121,7 @@ const deleteNoteById = (req, h) => {
   return h
     .response({
       status: 'fail',
-      message: 'data gagal dihapus, id tidak ditemukan',
+      message: 'Catatan tidak ditemukan',
     })
     .code(404);
 };
